@@ -8,33 +8,33 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="abreFragmentA"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@id/button2"
+        app:layout_constraintBottom_toBottomOf="@id/buttonB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/button2"
-        />
+        app:layout_constraintStart_toEndOf="@id/buttonB" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="abreFragmentB"
         android:text="Button"
-        app:layout_constraintEnd_toStartOf="@id/button"
+        app:layout_constraintEnd_toStartOf="@id/buttonA"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 
-    
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="109dp"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
