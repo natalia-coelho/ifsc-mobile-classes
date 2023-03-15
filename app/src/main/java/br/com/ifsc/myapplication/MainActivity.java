@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-
     Fragment fragment;
     Button buttonA, buttonB;
     @Override
@@ -22,16 +21,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.buttonA:
-                        fragment= new FragmentoA();
+                        fragment = new FragmentoA();
                         break;
                     case R.id.buttonB:
-                        fragment= new FragmentoB();
+                        fragment = new FragmentoB();
                         break;
                 }
             }
         });
-        buttonB.setOnClickListener(this);
+//        buttonB.setOnClickListener();
     }
-    public void abreFragment() {
+    public void openFragment() {
+
     }
 }

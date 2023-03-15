@@ -1,14 +1,9 @@
 package br.com.ifsc.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-
-public class FragmentoA extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragmento);
+public class FragmentoA extends Fragment {
+    public FragmentoA(){
+        super(R.layout.activity_fragmento_a);
     }
 }

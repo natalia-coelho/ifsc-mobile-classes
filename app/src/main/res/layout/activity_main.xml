@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <Button
         android:id="@+id/buttonA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="abreFragmentA"
+        android:onClick="openFragment"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="@id/buttonB"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +21,8 @@
         android:id="@+id/buttonB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="abreFragmentB"
+        android:layout_marginTop="140dp"
+        android:onClick="openFragment"
         android:text="Button"
         app:layout_constraintEnd_toStartOf="@id/buttonA"
         app:layout_constraintHorizontal_bias="0.5"
@@ -32,9 +32,10 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="134dp">
     </FrameLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
