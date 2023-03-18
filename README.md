@@ -1,5 +1,3 @@
-# Mobile Classes at IFSC
+# Instituto Federal de Santa Catarina 🎓
 
-### Settings
-
-- Pixel 2 API 30.
+## Mobile Development Classes
