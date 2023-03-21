@@ -24,13 +24,17 @@ public final class FragmentSecondBinding implements ViewBinding {
   public final Button buttonSecond;
 
   @NonNull
-  public final TextView textviewSecond;
+  public final TextView textViewRandom;
+
+  @NonNull
+  public final TextView textviewHeader;
 
   private FragmentSecondBinding(@NonNull ConstraintLayout rootView, @NonNull Button buttonSecond,
-      @NonNull TextView textviewSecond) {
+      @NonNull TextView textViewRandom, @NonNull TextView textviewHeader) {
     this.rootView = rootView;
     this.buttonSecond = buttonSecond;
-    this.textviewSecond = textviewSecond;
+    this.textViewRandom = textViewRandom;
+    this.textviewHeader = textviewHeader;
   }
 
   @Override
@@ -66,13 +70,20 @@ public final class FragmentSecondBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textview_second;
-      TextView textviewSecond = ViewBindings.findChildViewById(rootView, id);
-      if (textviewSecond == null) {
+      id = R.id.textView_random;
+      TextView textViewRandom = ViewBindings.findChildViewById(rootView, id);
+      if (textViewRandom == null) {
         break missingId;
       }
 
-      return new FragmentSecondBinding((ConstraintLayout) rootView, buttonSecond, textviewSecond);
+      id = R.id.textview_header;
+      TextView textviewHeader = ViewBindings.findChildViewById(rootView, id);
+      if (textviewHeader == null) {
+        break missingId;
+      }
+
+      return new FragmentSecondBinding((ConstraintLayout) rootView, buttonSecond, textViewRandom,
+          textviewHeader);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
