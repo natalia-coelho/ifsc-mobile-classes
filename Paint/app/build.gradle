@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.myapplication'
+    namespace 'com.example.paint'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.myapplication"
-        minSdk 18
+        applicationId "com.example.paint"
+        minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
