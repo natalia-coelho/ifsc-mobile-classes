@@ -1,4 +1,4 @@
-package com.example.paint;
+package br.com.ifsc.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
