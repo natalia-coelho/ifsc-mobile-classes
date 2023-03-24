@@ -3,6 +3,7 @@ package br.com.ifsc.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import com.example.paint.R;
 
 public class MainActivity extends AppCompatActivity {
 
