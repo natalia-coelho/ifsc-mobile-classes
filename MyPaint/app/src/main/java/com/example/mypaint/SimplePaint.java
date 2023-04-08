@@ -10,9 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class SimplePaint extends View {
         mPaintList=new ArrayList<Paint>();
         mPathList=new ArrayList<Path>();
         currentColor = new ColorDrawable();
-        currentColor.setColor(Color.CYAN);
+        currentColor.setColor(Color.WHITE);
         initLayerDraw();
     }
 
@@ -69,6 +67,7 @@ public class SimplePaint extends View {
                 mPaintList.add(currentPaint);
                 mPathList.add(currentPath);
                 initLayerDraw();
+                currentPaint.clearShadowLayer();
                 break;
             default: break;
         }
@@ -78,5 +77,27 @@ public class SimplePaint extends View {
     public void setColor(Color color) {
         currentColor.setColor(color.toArgb());
         currentPaint.setColor(color.toArgb());
+    }
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+
+    }
+
+    public void clearCanvas() {
+        mPaintList.clear();
+        mPathList.clear();
+        currentPath.reset();
+        initLayerDraw();
+        invalidate();
+    }
+    public void undoLastPath() {
+        if (!mPathList.isEmpty()) {
+            int lastIndex = mPathList.size() - 1;
+            mPathList.remove(lastIndex);
+            mPaintList.remove(lastIndex);
+            invalidate();
+        }
     }
 }

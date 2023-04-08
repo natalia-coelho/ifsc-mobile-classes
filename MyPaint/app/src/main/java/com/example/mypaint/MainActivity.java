@@ -14,18 +14,38 @@ import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 public class MainActivity extends AppCompatActivity {
     SimplePaint simplePaint;
     ImageView imageViewColorPicker;
+    ImageView imageViewUndoLastPath;
+    ImageView imageViewResetDraw;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         simplePaint = findViewById(R.id.simplePaint);
         imageViewColorPicker = findViewById(R.id.ivColorPicker);
+        imageViewUndoLastPath = findViewById(R.id.imageViewUndo);
+        imageViewResetDraw = findViewById(R.id.imageViewResetDraw);
         imageViewColorPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 colorPickerSelectColor(imageViewColorPicker);
             }
         }
+        );
+
+        imageViewUndoLastPath.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    undoLastPath(view);
+                }
+            }
+        );
+
+        imageViewResetDraw.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 resetDraw(view);
+             }
+         }
         );
     }
 
@@ -56,5 +76,11 @@ public class MainActivity extends AppCompatActivity {
     private void setColor(ColorEnvelope envelope) {
         simplePaint.setColor(Color.valueOf(envelope.getColor()));
         imageViewColorPicker.setColorFilter(envelope.getColor());
+    }
+    public void undoLastPath(View view) {
+        simplePaint.undoLastPath();
+    }
+    public void resetDraw(View view) {
+        simplePaint.clearCanvas();
     }
 }
