@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <com.example.mypaint.SimplePaint
         android:id="@+id/simplePaint"
         android:layout_width="wrap_content"
@@ -22,10 +23,11 @@
         android:layout_height="50dp"
         android:onClick="colorPickerSelectColor"
         android:outlineAmbientShadowColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/simplePaint"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.551"
         app:srcCompat="@drawable/wheel" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -33,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="79dp" />
+        app:layout_constraintGuide_begin="66dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -66,6 +68,13 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="0.512"
         app:srcCompat="@drawable/eraser" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="64dp"
+        android:layout_height="21dp"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="35dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
