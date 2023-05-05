@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         textViewTime.setText(convertDurationMillis(mediaPlayer.getDuration()));
         mediaPlayer.getCurrentPosition();
+        timerCounter();
     }
 
     @Override
@@ -52,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
     public String convertDurationMillis(Integer getDurationInMillis){
 
         int getDurationMillis = getDurationInMillis;
@@ -64,5 +66,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String getDuration = convertHours + ":" + convertMinutes + ":" + convertSeconds;
 
         return getDuration;
+    }
+
+    public void updateTimer(){
+        String strTimeDuration=convertDurationMillis(mediaPlayer.getDuration());
+        strTimeDuration+="/"+convertDurationMillis(mediaPlayer.getCurrentPosition());
+        textViewTime.setText(strTimeDuration);
+    }
+
+    private Timer timer;
+    private void timerCounter(){
+        timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateTimer();
+                    }
+                });
+            }
+        };
+        timer.schedule(task, 0, 1000);
     }
 }
