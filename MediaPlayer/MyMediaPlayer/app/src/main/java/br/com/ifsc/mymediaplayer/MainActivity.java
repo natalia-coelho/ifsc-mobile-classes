@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bntPlay.setOnClickListener(this);
         bntStop.setOnClickListener(this);
         bntPause.setOnClickListener(this);
+        
 
         seekBarTime = findViewById(R.id.seekBarTime);
         seekBarVolume = findViewById(R.id.seekBarVolume);
