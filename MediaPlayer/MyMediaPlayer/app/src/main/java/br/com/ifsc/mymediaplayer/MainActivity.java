@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton bntPlay, bntStop, bntPause;
     SeekBar seekBarTime, seekBarVolume;
     TextView textViewTime;
-    private Timer timerCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.bntPlay:
+            case R.id.btnPlay:
                 mediaPlayer.start();
                 break;
             case R.id.btnPause:
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void timerCounter(){
-        timerCounter = new Timer();
+        Timer timerCounter = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
