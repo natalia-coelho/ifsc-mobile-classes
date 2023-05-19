@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         );
-
         imageViewUndoLastPath.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         );
-
         imageViewResetDraw.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
@@ -48,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
          }
         );
     }
-
     public void colorPickerSelectColor(View view){
         new ColorPickerDialog.Builder(this)
                 .setTitle("ColorPicker Dialog")

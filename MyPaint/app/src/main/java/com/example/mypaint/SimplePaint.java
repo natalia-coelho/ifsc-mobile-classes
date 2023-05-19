@@ -31,10 +31,10 @@ public class SimplePaint extends View {
         initLayerDraw();
     }
     public void  initLayerDraw(){
-        currentPaint=new Paint();
-        currentPath = new Path();
-        currentPaint.setStyle(Paint.Style.STROKE);
-        currentPaint.setStrokeWidth(30);
+            currentPaint=new Paint();
+            currentPath = new Path();
+            currentPaint.setStyle(Paint.Style.STROKE);
+            currentPaint.setStrokeWidth(30);
         currentPaint.setColor(currentColor.getColor());
     }
     @Override
