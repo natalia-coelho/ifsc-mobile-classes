@@ -2,6 +2,7 @@ package com.example.crudnotas.view;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,5 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 itens);
 
             list.setAdapter(adapter);
+    }
+
+    public void createNote(View v){
+        Intent intent = new Intent(this, ActivityShowNotes.class);
+        intent.putExtra("id_nota", 0);
+        startActivity(intent);
     }
 }
