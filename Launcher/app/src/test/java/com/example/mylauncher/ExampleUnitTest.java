@@ -1,4 +1,4 @@
-package br.com.ifsc.launcher;
+package com.example.mylauncher;
 
 import org.junit.Test;
 
