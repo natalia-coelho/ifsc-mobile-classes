@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 
 public class TacoTableSQLiteHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "taco-table6.db";
+    private static final String DATABASE_NAME = "taco-table.db";
     private static final int DATABASE_VERSION = 1;
     private static final String SCRIPTS_FOLDER = "taco-table-scripts";
 
