@@ -3,6 +3,7 @@ package coelho.natalia.tacotable.services;
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -24,6 +25,11 @@ public class FoodDAO {
         ArrayList<Food> foodList = new ArrayList();
 
         Cursor cursor = this._foodDatabase.rawQuery("SELECT id, Caterogia, Alimento FROM taco_4___edicao", null);
+
+        if(cursor == null) {
+            return foodList;
+        }
+
         cursor.moveToFirst();
 
         try {
@@ -31,7 +37,7 @@ public class FoodDAO {
                 @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(ID_COLUMN));
                 @SuppressLint("Range") String category = cursor.getString(cursor.getColumnIndex(CATEGORY_COLUMN));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(NAME_COLUMN));
-                
+
                 foodList.add(new Food(id, category, name));
             } while (cursor.moveToNext());
         } finally {
@@ -42,11 +48,31 @@ public class FoodDAO {
     }
 
     public ArrayList<Food> GetFoods(String foodName) {
-        ArrayList foodList = new ArrayList();
+        ArrayList<Food> foodList = new ArrayList();
 
-        // select no banco where name like foodName
+        SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+        queryBuilder.setTables("TACO_4___EDICAO");
+        String[] columns = {"ID", "CATEROGIA", "ALIMENTO"};
+        String selection = "ALIMENTO LIKE ?";
+        String[] selectionArgs = {"%" + foodName + "%"};
 
-        // converter resultados para arraylist de foods
+        Cursor cursor = queryBuilder.query(_foodDatabase, columns, selection, selectionArgs, null, null, null);
+
+        if(cursor == null || !cursor.moveToFirst()) {
+            return foodList;
+        }
+
+        try {
+            do {
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(ID_COLUMN));
+                @SuppressLint("Range") String category = cursor.getString(cursor.getColumnIndex(CATEGORY_COLUMN));
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(NAME_COLUMN));
+
+                foodList.add(new Food(id, category, name));
+            } while (cursor.moveToNext());
+        } finally {
+            cursor.close();
+        }
 
         return foodList;
     }

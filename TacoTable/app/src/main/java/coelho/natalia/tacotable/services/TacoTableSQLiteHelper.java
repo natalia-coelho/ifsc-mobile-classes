@@ -30,9 +30,8 @@ public class TacoTableSQLiteHelper extends SQLiteOpenHelper {
         try {
             String[] scriptFiles = assetManager.list(SCRIPTS_FOLDER);
 
-            if (scriptFiles == null) {
+            if (scriptFiles == null)
                 return;
-            }
 
             for (String scriptFile : scriptFiles) {
                 InputStream inputStream = assetManager.open(SCRIPTS_FOLDER + "/" + scriptFile);

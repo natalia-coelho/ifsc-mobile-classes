@@ -2,10 +2,13 @@ package coelho.natalia.tacotable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -13,36 +16,64 @@ import coelho.natalia.tacotable.controllers.FoodController;
 import coelho.natalia.tacotable.models.Food;
 import coelho.natalia.tacotable.services.FoodDAO;
 import coelho.natalia.tacotable.services.TacoTableSQLiteHelper;
+import coelho.natalia.tacotable.views.FoodArrayAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SQLiteDatabase database;
+    private SQLiteDatabase _database;
+    private ListView _foodListView;
+    private FoodArrayAdapter _foodArrayAdapter;
+    private EditText _searchEditText;
+    private Button _searchButton;
+    private FoodController _foodController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Obtenha uma instância do DatabaseHelper
         TacoTableSQLiteHelper dbHelper = new TacoTableSQLiteHelper(this);
+        _foodArrayAdapter = new FoodArrayAdapter(this, new ArrayList<Food>());
+        this._database = dbHelper.getWritableDatabase();
 
-        // Obtenha uma conexão de banco de dados gravável
-        database = dbHelper.getWritableDatabase();
+        _foodListView = findViewById(R.id.listView);
+        _foodListView.setAdapter(_foodArrayAdapter);
 
-        FoodDAO foodDao = new FoodDAO(database);
-        FoodController foodController = new FoodController(foodDao);
+        _searchEditText = findViewById(R.id.searchEditText);
+        _searchButton = findViewById(R.id.searchButton);
 
-        ArrayList<Food> foodList = foodController.GetFoods();
+        FoodDAO foodDao = new FoodDAO(this._database);
+        this._foodController = new FoodController(foodDao);
 
-        for (Food food : foodList) {
-            Log.i("MainActivity", food.getFoodName() + food.getCategory() + food.getId());
+        _searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchFood();
+            }
+        });
+
+        loadAllFoods();
+    }
+
+    private void loadAllFoods() {
+        _foodArrayAdapter.addAll(this._foodController.GetFoods());
+    }
+
+    private void searchFood() {
+        String searchQuery = this._searchEditText.getText().toString().trim();
+
+        if(TextUtils.isEmpty((searchQuery))) {
+            loadAllFoods();
+            return;
         }
+
+        _foodArrayAdapter.clear();
+        _foodArrayAdapter.addAll(this._foodController.GetFoods(searchQuery));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Feche a conexão com o banco de dados quando não for mais necessária
-        database.close();
+        this._database.close();
     }
 }
