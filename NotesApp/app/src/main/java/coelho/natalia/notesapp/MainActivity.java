@@ -2,6 +2,7 @@ package coelho.natalia.notesapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import coelho.natalia.notesapp.controllers.NotesController;
 import coelho.natalia.notesapp.models.Note;
 import coelho.natalia.notesapp.services.InMemoryNoteService;
+import coelho.natalia.notesapp.services.SQLiteNoteService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +20,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        InMemoryNoteService noteService = new InMemoryNoteService();
+        NotesDatabaseOpenHelper notesDbHelper = new NotesDatabaseOpenHelper(this);
+        SQLiteDatabase notesDatabase = notesDbHelper.getWritableDatabase();
+
+//        InMemoryNoteService noteService = new InMemoryNoteService();
+        SQLiteNoteService noteService = new SQLiteNoteService(notesDatabase);
         NotesController notesController = new NotesController(noteService);
 
         List<Note> notes = notesController.ListNotes();

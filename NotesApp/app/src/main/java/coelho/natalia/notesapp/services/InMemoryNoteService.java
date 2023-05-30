@@ -1,5 +1,6 @@
 package coelho.natalia.notesapp.services;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,15 +51,21 @@ public class InMemoryNoteService implements INoteService{
 
     @Override
     public Note EditNote(UUID noteId, String text) {
-        Note note = _noteStorage.get(noteId);
+        Note oldNote = _noteStorage.get(noteId);
 
-        if (note == null)
+        if (oldNote == null)
             return null;
 
-        note.EditNote(text);
-        _noteStorage.put(noteId, note);
+        Note newNote = new Note(
+                noteId,
+                text,
+                oldNote.getCreatedDateTime(),
+                OffsetDateTime.now()
+        );
 
-        return note;
+        _noteStorage.put(noteId, newNote);
+
+        return newNote;
     }
 
 

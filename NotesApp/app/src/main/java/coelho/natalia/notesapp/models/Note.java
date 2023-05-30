@@ -16,9 +16,11 @@ public class Note {
         this.ModifiedDateTime = OffsetDateTime.now();
     }
 
-    public void EditNote(String text) {
+    public Note(UUID id, String text, OffsetDateTime createdDateTime, OffsetDateTime modifiedDateTime) {
+        this.Id = id;
         this.Text = text;
-        this.ModifiedDateTime = OffsetDateTime.now();
+        this.CreatedDateTime = createdDateTime;
+        this.ModifiedDateTime = modifiedDateTime;
     }
 
     @Override
