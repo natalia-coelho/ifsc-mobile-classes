@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import coelho.natalia.notesapp.controllers.NotesController;
@@ -46,9 +45,19 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("MainActivity", "Note edited!");
 
+        notesController.CreateNote("maçã");
+
         notes = notesController.ListNotes();
 
         Log.d("MainActivity", "Listing all notes...");
+
+        for (Note note : notes) {
+            Log.i("MainActivity", note.toString());
+        }
+
+        notes = notesController.SearchNotes("banana");
+
+        Log.d("MainActivity", "Searching for banana...");
 
         for (Note note : notes) {
             Log.i("MainActivity", note.toString());

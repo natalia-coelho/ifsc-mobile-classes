@@ -36,6 +36,19 @@ public class InMemoryNoteService implements INoteService{
     }
 
     @Override
+    public List<Note> SearchNotes(String text) {
+        List<Note> rawNotes = new ArrayList<Note>(_noteStorage.values());
+        List<Note> filteredNotes = new ArrayList<Note>();
+
+        for (Note note : rawNotes) {
+            if(note.getText().contains(text))
+                filteredNotes.add(note);
+        }
+
+        return filteredNotes;
+    }
+
+    @Override
     public Note EditNote(UUID noteId, String text) {
         Note note = _noteStorage.get(noteId);
 

@@ -1,6 +1,5 @@
 package coelho.natalia.notesapp.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +24,10 @@ public class NotesController {
 
     public List<Note> ListNotes() {
         return _noteService.ListNotes();
+    }
+
+    public List<Note> SearchNotes(String text) {
+        return _noteService.SearchNotes(text);
     }
 
     public Note EditNote(UUID noteId, String text) {

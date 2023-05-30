@@ -9,6 +9,7 @@ public interface INoteService {
     public Note CreateNote(String text);
     public List<Note> ListNotes();
     public Note GetNote(UUID noteId);
+    public List<Note> SearchNotes(String text);
     public Note EditNote (UUID noteId, String text);
     public void DeleteNote(UUID noteId);
 }
