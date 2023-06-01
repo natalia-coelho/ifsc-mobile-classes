@@ -146,19 +146,21 @@ public class SQLiteNoteService implements INoteService{
 
         try {
             if (cursor.moveToFirst()) {
-                @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex("id"));
-                @SuppressLint("Range") String noteText = cursor.getString(cursor.getColumnIndex("text"));
-                @SuppressLint("Range") String createdDateTime = cursor.getString(cursor.getColumnIndex("created_datetime"));
-                @SuppressLint("Range") String modifiedDateTime = cursor.getString(cursor.getColumnIndex("modified_datetime"));
+                do {
+                    @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex("id"));
+                    @SuppressLint("Range") String noteText = cursor.getString(cursor.getColumnIndex("text"));
+                    @SuppressLint("Range") String createdDateTime = cursor.getString(cursor.getColumnIndex("created_datetime"));
+                    @SuppressLint("Range") String modifiedDateTime = cursor.getString(cursor.getColumnIndex("modified_datetime"));
 
-                Note note = new Note(
-                        UUID.fromString(id),
-                        noteText,
-                        OffsetDateTime.parse(createdDateTime),
-                        OffsetDateTime.parse(modifiedDateTime)
-                );
+                    Note note = new Note(
+                            UUID.fromString(id),
+                            noteText,
+                            OffsetDateTime.parse(createdDateTime),
+                            OffsetDateTime.parse(modifiedDateTime)
+                    );
 
-                notes.add(note);
+                    notes.add(note);
+                } while (cursor.moveToNext());
             }
         } finally {
             cursor.close();

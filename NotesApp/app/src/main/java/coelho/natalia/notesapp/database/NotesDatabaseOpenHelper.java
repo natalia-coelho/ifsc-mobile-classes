@@ -1,4 +1,4 @@
-package coelho.natalia.notesapp;
+package coelho.natalia.notesapp.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,7 +8,7 @@ public class NotesDatabaseOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "notes_database.db";
     private static final int DATABASE_VERSION = 1;
 
-    NotesDatabaseOpenHelper(Context context) {
+    public NotesDatabaseOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
